@@ -21,7 +21,22 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    :root{
+      --base: red;
+      --spacing: 20px;
+      --blur: 10px;
+    }
 
+    img {
+      background-color: var(--base);
+      padding: var(--spacing);
+      filter: blur(var(--blur));
+
+    }
+
+    .hl {
+      color: var(--base);
+    }
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -45,6 +60,16 @@
   </style>
 
   <script>
+    const inputs = document.querySelectorAll('input');
+    function inputChange() {
+      const suffix = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+    inputs.forEach(input => {
+      input.addEventListener('change', inputChange);
+      input.addEventListener('onmousedown', inputChange); 
+    })
+    
   </script>
 
 </body>
